@@ -1,4 +1,4 @@
-import React, { useState, useEffect, CSSProperties } from "react";
+import { useState, useEffect, CSSProperties } from "react";
 import { useWallet, InputTransactionData } from "@aptos-labs/wallet-adapter-react";
 import { Aptos, AptosConfig, Network } from "@aptos-labs/ts-sdk";
 
