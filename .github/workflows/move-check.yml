@@ -1,0 +1,25 @@
+name: "Move Code Check"
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Install Aptos CLI
+        run: |
+          curl -fsSL "https://aptos.dev/scripts/install_cli.py" | python3
+          echo "/home/runner/.aptos/bin" >> $GITHUB_PATH
+
+      - name: Compile Move Modules
+        run: |
+          # This assumes your Move.toml is in the root or a folder named 'contract'
+          # Adjust the path if necessary (e.g., cd demo && aptos move compile)
+          aptos move compile
