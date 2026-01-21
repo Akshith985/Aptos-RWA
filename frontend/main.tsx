@@ -1,9 +1,10 @@
 import { AptosWalletAdapterProvider } from "@aptos-labs/wallet-adapter-react";
+import "@aptos-labs/wallet-adapter-ant-design/dist/index.css";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { Network } from "@aptos-labs/ts-sdk";
 import App from "./App";
-import './index.css'
+
 // 1. Force the selector to recognize Petra
 const optInWallets = ["Petra"] as const;
 
