@@ -2,6 +2,11 @@
 
 An open-source Real-World Asset (RWA) protocol built on Aptos that transforms traditional invoices into unique, verifiable, and tradable on-chain objects.
 
+# Invoice.OS
+
+[![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://github.com/Akshith985/Aptos-RWA/blob/master/LICENSE)
+[![Aptos](https://img.shields.io/badge/Network-Aptos_Testnet-black)](https://explorer.aptoslabs.com/)
+
 ## 🚀 Overview
 Traditional invoices are "dead capital" locked in private databases. This project utilizes the **Aptos Object Model** to tokenize invoices, giving each a deterministic identity through `addr` and `creation_num`. 
 
