@@ -1,12 +1,13 @@
 [package]
-name = "MessageBoard"
+name = "InvoiceOS"
 version = "1.0.0"
-authors = []
 
 [addresses]
-invoice_rwa = "0x0c78e01d2569757cfcdfda3ace5e81227c77145c254f12f21da825a243638f2b"
+# Your existing address
+invoice_rwa = "_"
+
+# ADD THIS LINE:
+message_board_addr = "_"
 
 [dependencies]
 AptosFramework = { git = "https://github.com/aptos-labs/aptos-framework.git", rev = "mainnet", subdir = "aptos-framework" }
-
-[dev-dependencies]

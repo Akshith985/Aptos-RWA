@@ -1,4 +1,4 @@
-module invoice_rwa::invoice_rwa {
+module invoice_rwa::invoice_engine_v2 {
     use std::string::{String};
     use std::signer;
     use std::vector;
