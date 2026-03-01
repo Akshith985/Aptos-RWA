@@ -1,4 +1,5 @@
 import { WalletSelector } from "./WalletSelector";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   return (
@@ -6,6 +7,7 @@ export function Header() {
       <h1 className="display">Boilerplate Template</h1>
 
       <div className="flex gap-2 items-center flex-wrap">
+        <ThemeToggle />
         <WalletSelector />
       </div>
     </div>
