@@ -12,5 +12,9 @@ export const writeMessage = (args: WriteMessageArguments): InputTransactionData 
       function: `${MODULE_ADDRESS}::message_board::post_message`,
       functionArguments: [content],
     },
+    options: {
+      maxGasAmount: 1000000,
+      gasUnitPrice: 100,
+    },
   };
 };

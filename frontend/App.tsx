@@ -39,6 +39,11 @@ function App() {
         function: `${MODULE_ADDRESS}::invoice_rwa::create_invoice`,
         functionArguments: [randomId, customAmount],
       },
+      options: {
+        maxGasAmount: 1000000,
+        gasUnitPrice: 100,
+        
+      },
     };
     try {
       const response = await signAndSubmitTransaction(transaction);

@@ -13,5 +13,9 @@ export const transferAPT = (args: TransferAPTArguments): InputTransactionData =>
       functionArguments: [to, amount],
       typeArguments: ["0x1::aptos_coin::AptosCoin"],
     },
+    options: {
+      maxGasAmount: 1000000,
+      gasUnitPrice: 100,
+    },
   };
 };
