@@ -1,3 +1,54 @@
+        /// Returns the number of invoices for an owner.
+        public fun get_invoice_count(owner: address): u64 acquires InvoiceStore {
+            if (!exists<InvoiceStore>(owner)) return 0;
+            let store = borrow_global<InvoiceStore>(owner);
+            vector::length(&store.invoices)
+        }
+
+        /// Returns true if an invoice with the given id exists for the owner.
+        public fun invoice_exists(owner: address, id: String): bool acquires InvoiceStore {
+            if (!exists<InvoiceStore>(owner)) return false;
+            let store = borrow_global<InvoiceStore>(owner);
+            let len = vector::length(&store.invoices);
+            let mut i = 0u64;
+            while (i < len) {
+                let inv = vector::borrow(&store.invoices, i);
+                if (inv.id == id) return true;
+                i = i + 1;
+            };
+            false
+        }
+
+        /// Returns the invoice with the given id for the owner, or aborts if not found.
+        public fun get_invoice_by_id(owner: address, id: String): Invoice acquires InvoiceStore {
+            assert!(exists<InvoiceStore>(owner), 1004);
+            let store = borrow_global<InvoiceStore>(owner);
+            let len = vector::length(&store.invoices);
+            let mut i = 0u64;
+            while (i < len) {
+                let inv = vector::borrow(&store.invoices, i);
+                if (inv.id == id) return *inv;
+                i = i + 1;
+            };
+            abort 1005;
+        }
+
+        /// Returns all invoices for the owner with amount in [min, max].
+        public fun get_invoices_by_amount_range(owner: address, min: u64, max: u64): vector<Invoice> acquires InvoiceStore {
+            let mut result = vector::empty<Invoice>();
+            if (!exists<InvoiceStore>(owner)) return result;
+            let store = borrow_global<InvoiceStore>(owner);
+            let len = vector::length(&store.invoices);
+            let mut i = 0u64;
+            while (i < len) {
+                let inv = vector::borrow(&store.invoices, i);
+                if (inv.amount >= min && inv.amount <= max) {
+                    vector::push_back(&mut result, *inv);
+                }
+                i = i + 1;
+            };
+            result
+        }
     // View function: get invoices by status
     public fun get_invoices_by_status(account: address, status: u8): vector<Invoice> acquires InvoiceStore {
         let store = borrow_global<InvoiceStore>(account);
