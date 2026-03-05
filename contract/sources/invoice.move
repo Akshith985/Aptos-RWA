@@ -37,6 +37,10 @@ module invoice_rwa::invoice_engine_v2 {
     }
 
     // 2. Define the Storage (A list of invoices)
+    /// InvoiceStore holds all invoices for a given account.
+    ///
+    /// # Fields
+    /// - invoices: vector<Invoice> - The list of invoices created by the account.
     struct InvoiceStore has key {
         invoices: vector<Invoice>
     }
@@ -49,7 +53,16 @@ module invoice_rwa::invoice_engine_v2 {
         move_to(account, store);
     }
 
-    // 4. Create Invoice Function
+    /// Creates a new invoice and adds it to the sender's InvoiceStore.
+    ///
+    /// # Parameters
+    /// - account: &signer - The signer creating the invoice (issuer).
+    /// - id: String - Unique identifier for the invoice.
+    /// - amount: u64 - Amount due for the invoice.
+    /// - due_date: u64 - Timestamp when the invoice is due.
+    /// - created_at: u64 - Timestamp when the invoice is created.
+    ///
+    /// Initializes the store if it does not exist.
     public entry fun create_invoice(
         account: &signer, 
         id: String, 
