@@ -58,16 +58,17 @@ function App() {
   if (!connected) {
     return (
       <DashboardLayout view={view} setView={setView} totalValue={totalValue}>
-        <div className="flex flex-col items-center justify-center h-full min-h-[50vh]">
-          <div className="bg-card p-12 rounded-3xl border border-border text-center max-w-md w-full shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Institutional Gateway</h2>
+        <div className="flex flex-col items-center justify-center min-h-[60vh] px-4 py-12 bg-gradient-to-br from-blue-50 via-white to-slate-100 dark:from-background dark:via-background dark:to-background">
+          <div className="bg-card p-8 md:p-12 rounded-3xl border border-border text-center max-w-md w-full shadow-xl transition-all duration-300">
+            <h2 className="text-3xl md:text-4xl font-extrabold text-foreground mb-6 md:mb-8 tracking-tight">Welcome to Invoice.OS</h2>
+            <p className="mb-8 text-base md:text-lg text-muted-foreground font-medium">Aptos-powered institutional invoice marketplace</p>
             <div className="grid gap-3 w-full">
               {wallets && wallets.length > 0 ? (
                 wallets.map((w) => (
                   <button
                     key={w.name}
                     onClick={() => connect(w.name)}
-                    className="w-full py-4 px-6 bg-slate-900 text-white font-semibold rounded-xl hover:bg-black transition-colors flex items-center justify-center gap-3"
+                    className="w-full py-4 px-6 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors flex items-center justify-center gap-3 shadow-md"
                   >
                     {w.icon && (
                       <img 
