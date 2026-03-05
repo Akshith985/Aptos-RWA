@@ -176,6 +176,17 @@ module invoice_rwa::invoice_engine_v2 {
         };
 
         let store = borrow_global_mut<InvoiceStore>(issuer_address);
+        // Uniqueness check: abort if invoice with same id exists
+        let len = vector::length(&store.invoices);
+        let mut i = 0u64;
+        while (i < len) {
+            let inv = vector::borrow(&store.invoices, i);
+            if (inv.id == id) {
+                abort 3001; // Duplicate invoice ID
+            }
+            i = i + 1;
+        }
+
         let new_invoice = Invoice {
             id,
             amount,
