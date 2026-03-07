@@ -49,7 +49,8 @@ export function IssuerView({
 
                         <button
                             onClick={mintInvoice}
-                            disabled={isMinting}
+                            disabled={isMinting || customAmount <= 0}
+                            title={customAmount <= 0 ? "Amount must be greater than 0" : ""}
                             className="w-full md:w-auto px-8 py-4 bg-primary text-primary-foreground font-bold rounded-xl hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/20 disabled:opacity-70 disabled:cursor-not-allowed transition-all active:scale-95"
                         >
                             {isMinting ? (
