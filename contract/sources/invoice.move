@@ -117,6 +117,9 @@ module invoice_rwa::invoice_engine_v2 {
     use std::signer;
     use std::vector;
 
+    // Error constants
+    const E_INVALID_AMOUNT: u64 = 1;
+
     // 1. Define the Invoice Structure
     // Status constants
     const STATUS_DRAFT: u8 = 0;
@@ -169,6 +172,8 @@ module invoice_rwa::invoice_engine_v2 {
         due_date: u64,
         created_at: u64
     ) acquires InvoiceStore {
+        assert!(amount > 0, E_INVALID_AMOUNT);
+        
         let issuer_address = signer::address_of(account);
         // Ensure the user has a store, if not, create one
         if (!exists<InvoiceStore>(issuer_address)) {
