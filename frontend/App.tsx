@@ -58,22 +58,27 @@ function App() {
   if (!connected) {
     return (
       <DashboardLayout view={view} setView={setView} totalValue={totalValue}>
-        <div className="flex flex-col items-center justify-center h-full min-h-[50vh]">
-          <div className="bg-card p-12 rounded-3xl border border-border text-center max-w-md w-full shadow-lg">
-            <h2 className="text-2xl font-bold text-foreground mb-8">Institutional Gateway</h2>
-            <div className="grid gap-3 w-full">
+        <section className="flex flex-col items-center justify-center min-h-[70vh] px-4 py-16 bg-gradient-to-br from-blue-100 via-white to-slate-100 dark:from-background dark:via-background dark:to-background">
+          <div className="bg-card p-6 sm:p-10 md:p-14 rounded-3xl border border-border text-center max-w-lg w-full shadow-2xl transition-all duration-300 flex flex-col items-center">
+            <h1 className="text-4xl md:text-5xl font-extrabold text-blue-700 dark:text-primary mb-4 md:mb-6 tracking-tight leading-tight drop-shadow-sm">
+              Invoice.OS
+            </h1>
+            <p className="mb-8 text-lg md:text-xl text-muted-foreground font-medium max-w-md mx-auto">
+              The next-gen institutional invoice marketplace powered by Aptos blockchain.
+            </p>
+            <div className="w-full flex flex-col gap-4">
               {wallets && wallets.length > 0 ? (
                 wallets.map((w) => (
                   <button
                     key={w.name}
                     onClick={() => connect(w.name)}
-                    className="w-full py-4 px-6 bg-slate-900 text-white font-semibold rounded-xl hover:bg-black transition-colors flex items-center justify-center gap-3"
+                    className="w-full py-4 px-6 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-500 transition-all flex items-center justify-center gap-3 shadow-lg text-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
                   >
                     {w.icon && (
                       <img 
                         src={w.icon} 
                         alt={w.name} 
-                        className="w-6 h-6 rounded-full"
+                        className="w-7 h-7 rounded-full"
                       />
                     )}
                     <span>Connect {w.name}</span>
@@ -81,12 +86,12 @@ function App() {
                 ))
               ) : (
                 <div className="space-y-4">
-                  <p className="text-slate-600 text-sm">No wallet detected</p>
+                  <p className="text-slate-600 text-base">No wallet detected</p>
                   <a
                     href="https://petra.app/"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block w-full py-4 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-700 transition-colors"
+                    className="inline-block w-full py-4 bg-gradient-to-r from-blue-600 to-blue-400 text-white font-bold rounded-xl hover:from-blue-700 hover:to-blue-500 transition-all text-lg shadow-lg"
                   >
                     Download Petra Wallet
                   </a>
@@ -97,7 +102,7 @@ function App() {
               )}
             </div>
           </div>
-        </div>
+        </section>
       </DashboardLayout>
     );
   }
